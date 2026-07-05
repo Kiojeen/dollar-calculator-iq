@@ -1,4 +1,4 @@
-const CACHE_NAME = "dollar-iq-v2";
+const CACHE_NAME = "dollar-iq-v3";
 const ASSETS = [
   "./",
   "./index.html",
