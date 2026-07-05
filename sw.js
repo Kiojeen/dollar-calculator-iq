@@ -1,9 +1,11 @@
 const CACHE_NAME = "dollar-iq-v2";
 const ASSETS = [
+  "./",
   "./index.html",
   "./styles.css",
   "./script.js",
   "./manifest.json",
+  "./assets/icon.192x192.png",
   "./assets/icon.512x512.png",
 ];
 
