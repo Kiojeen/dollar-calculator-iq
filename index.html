@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Dollar Calculator IQ</title>
+    <meta
+      name="description"
+      content="Live USD to IQD converter sourced from t.me/dolarprices2"
+    />
+    <meta name="theme-color" content="#0b1613" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Dollar IQ" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="/assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="eyebrow">Baghdad street market · unofficial</div>
+        <h1>Dollar Calculator — Iraq</h1>
+        <div class="sub">USD ⇄ IQD, priced off the daily sarrafa board</div>
+      </header>
+
+      <div class="board" id="board">
+        <div class="board-top">
+          <span
+            ><span class="dot load" id="statusDot"></span
+            ><span id="statusText">connecting…</span></span
+          >
+          <span id="postTime">—</span>
+        </div>
+
+        <div class="rates">
+          <div class="rate-tile sell" id="sellTile">
+            <div class="rate-label">
+              <span>Sell</span><span class="ar">البيع</span>
+            </div>
+            <div class="rate-value" id="sellValue">—</div>
+          </div>
+          <div class="rate-tile buy" id="buyTile">
+            <div class="rate-label">
+              <span>Buy</span><span class="ar">الشراء</span>
+            </div>
+            <div class="rate-value" id="buyValue">—</div>
+          </div>
+        </div>
+
+        <div class="board-meta">
+          <span
+            >Source:
+            <a href="https://t.me/dolarprices2" target="_blank" rel="noopener"
+              >t.me/dolarprices2</a
+            ></span
+          >
+          <span id="channelName">شركة سولاف للصيرفة</span>
+        </div>
+
+        <div class="raw-post" id="rawPost"></div>
+
+        <div id="errorBox"></div>
+
+        <div class="refresh-row">
+          <button class="ghost" id="refreshBtn">↻ refresh rate</button>
+        </div>
+      </div>
+
+      <div class="converter">
+        <div class="conv-card">
+          <div class="conv-head">
+            <div class="conv-title">
+              Dinar → Dollar <span class="flag">IQD → USD</span>
+            </div>
+            <select id="rateForIqd">
+              <option value="sell">use sell rate</option>
+              <option value="buy">use buy rate</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="iqdInput">Amount in IQD</label>
+              <input
+                type="text"
+                inputmode="decimal"
+                id="iqdInput"
+                placeholder="1,000,000"
+              />
+            </div>
+          </div>
+          <div class="result">
+            <span class="lbl">≈ in USD</span>
+            <span class="amt" id="iqdOut">$0.00</span>
+          </div>
+        </div>
+
+        <div
+          class="swap-btn"
+          id="swapHint"
+          title="rates auto-sync between both cards"
+        >
+          ⇅
+        </div>
+
+        <div class="conv-card">
+          <div class="conv-head">
+            <div class="conv-title">
+              Dollar → Dinar <span class="flag">USD → IQD</span>
+            </div>
+            <select id="rateForUsd">
+              <option value="buy">use buy rate</option>
+              <option value="sell">use sell rate</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="usdInput">Amount in USD</label>
+              <input
+                type="text"
+                inputmode="decimal"
+                id="usdInput"
+                placeholder="100"
+              />
+            </div>
+          </div>
+          <div class="result">
+            <span class="lbl">≈ in IQD</span>
+            <span class="amt" id="usdOut">٠</span>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        Rates scraped from the public Telegram post at
+        <a href="https://t.me/dolarprices2" target="_blank" rel="noopener"
+          >t.me/dolarprices2</a
+        >
+        (شركة سولاف للصيرفة). Informal market rate, not a bank or CBI rate —
+        verify before any real transfer.
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
