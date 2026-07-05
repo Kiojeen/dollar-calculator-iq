@@ -46,16 +46,6 @@
     );
   }
 
-  function findNumberNear(text, label) {
-    const idx = text.lastIndexOf(label);
-    if (idx === -1) return NaN;
-    const start = Math.max(0, idx - 25);
-    const end = Math.min(text.length, idx + label.length + 25);
-    const windowText = text.slice(start, end);
-    const match = windowText.match(/\d{1,3}(?:,\d{3})+|\d{4,}/);
-    return match ? toNumber(match[0]) : NaN;
-  }
-
   function messageNodeToText(node) {
     let out = "";
     node.childNodes.forEach((child) => {
@@ -71,9 +61,32 @@
     });
     return out;
   }
+
   function extractRatesFromText(text) {
-    const sell = findNumberNear(text, "البيع");
-    const buy = findNumberNear(text, "الشراء");
+    let sell = NaN;
+    let buy = NaN;
+
+    const lines = text
+      .split("\n")
+      .map((l) => l.trim())
+      .filter(Boolean);
+
+    for (const line of lines) {
+      const match = line.match(/(\d{1,3}(?:,\d{3})+|\d+)/);
+
+      if (!match) continue;
+
+      const value = toNumber(match[1]);
+
+      if (line.includes("البيع")) {
+        sell = value;
+      }
+
+      if (line.includes("الشراء")) {
+        buy = value;
+      }
+    }
+
     return { sell, buy };
   }
 
